@@ -41,6 +41,8 @@ def embed_text(text):
                 # TF2
                 model = hub.load(MODEL_URL)
             return model(text)
+    else:
+        return model(text)
     return None
 
 def get_metadata():

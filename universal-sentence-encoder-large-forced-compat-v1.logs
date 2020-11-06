@@ -1,68 +1,111 @@
-2020-11-06 00:24:00.468242: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+2020-11-06 00:35:12.177900: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2020-11-06 00:24:00.479452: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7feeba9184f0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
-2020-11-06 00:24:00.479483: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-11-06 00:35:12.190404: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f85a9a3aa40 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-11-06 00:35:12.190430: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-11-06 00:35:32.613297: W tensorflow/python/util/util.cc:348] Sets are not currently considered sequences, but this may change in the future, so consider avoiding using them.
+Traceback (most recent call last):
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 742, in apache_beam.runners.common.PerWindowInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 867, in apache_beam.runners.common.PerWindowInvoker._invoke_process_per_window
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/transforms/core.py", line 1616, in <lambda>
+    wrapper = lambda x, *args, **kwargs: [fn(x, *args, **kwargs)]
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 628, in _create_v2_saved_model
+    output_keys_to_name_map)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/impl_helper.py", line 515, in trace_and_write_v2_saved_model
+    tf.saved_model.save(module, saved_model_dir)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 976, in save
+    obj, export_dir, signatures, options, meta_graph_def)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 1066, in _build_meta_graph
+    options.namespace_whitelist)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 653, in _fill_meta_graph_def
+    signatures = _generate_signatures(signature_functions, resource_map)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 519, in _generate_signatures
+    function, mapped_inputs, resource_map)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 471, in _call_function_with_mapped_captures
+    resource_map)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 394, in _map_captures_to_created_tensors
+    ).format(interior))
+AssertionError: Tried to export a function which references untracked object Tensor("112358:0", shape=(), dtype=resource).TensorFlow objects (e.g. tf.Variable) captured by functions must be tracked by assigning them to an attribute of a tracked object or assigned to an attribute of the main object directly.
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
   File "run_pipeline.py", line 45, in <module>
     main()
   File "run_pipeline.py", line 40, in main
     pipeline.run(pipeline_options, known_args)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/modules/pipeline.py", line 99, in run
-    | "Extract embeddings" >> tft_beam.AnalyzeAndTransformDataset(preprocess_fn)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/transforms/ptransform.py", line 1028, in __ror__
-    return self.transform.__ror__(pvalueish, self.label)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/transforms/ptransform.py", line 565, in __ror__
-    result = p.apply(self, pvalueish, label)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/pipeline.py", line 634, in apply
-    return self.apply(transform, pvalueish)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/pipeline.py", line 677, in apply
-    pvalueish_result = self.runner.apply(transform, pvalueish, self._options)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/runner.py", line 198, in apply
-    return m(transform, input, options)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/runner.py", line 228, in apply_PTransform
-    return transform.expand(input)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 1197, in expand
-    dataset | 'AnalyzeDataset' >> AnalyzeDataset(self._preprocessing_fn))
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/transforms/ptransform.py", line 1028, in __ror__
-    return self.transform.__ror__(pvalueish, self.label)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/transforms/ptransform.py", line 565, in __ror__
-    result = p.apply(self, pvalueish, label)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/pipeline.py", line 634, in apply
-    return self.apply(transform, pvalueish)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/pipeline.py", line 677, in apply
-    pvalueish_result = self.runner.apply(transform, pvalueish, self._options)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/runner.py", line 198, in apply
-    return m(transform, input, options)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/runner.py", line 228, in apply_PTransform
-    return transform.expand(input)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 1142, in expand
-    None, input_metadata))
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 1065, in expand
-    metadata_fn.get_concrete_function(),
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py", line 1167, in get_concrete_function
-    concrete = self._get_concrete_function_garbage_collected(*args, **kwargs)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py", line 1073, in _get_concrete_function_garbage_collected
-    self._initialize(args, kwargs, add_initializers_to=initializers)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py", line 697, in _initialize
-    *args, **kwds))
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/eager/function.py", line 2855, in _get_concrete_function_internal_garbage_collected
-    graph_function, _, _ = self._maybe_define_function(args, kwargs)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/eager/function.py", line 3213, in _maybe_define_function
-    graph_function = self._create_graph_function(args, kwargs)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/eager/function.py", line 3075, in _create_graph_function
-    capture_by_value=self._capture_by_value),
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/framework/func_graph.py", line 986, in func_graph_from_py_func
-    func_outputs = python_func(*func_args, **func_kwargs)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py", line 600, in wrapped_fn
-    return weak_wrapped_fn().__wrapped__(*args, **kwds)
-  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/framework/func_graph.py", line 973, in wrapper
-    raise e.ag_error_metadata.to_exception(e)
-AttributeError: in user code:
-
-    /Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/schema_inference.py:590 metadata_fn  *
-        reversed_features = _get_tensor_value_to_key_map(transformed_features)
-    /Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/schema_inference.py:489 _get_tensor_value_to_key_map  *
-        result[values.name] = key
-
-    AttributeError: 'NoneType' object has no attribute 'name'
-
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/modules/pipeline.py", line 117, in run
+    job = pipeline.run()
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/pipeline.py", line 547, in run
+    return self.runner.run_pipeline(self, self._options)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/direct/direct_runner.py", line 119, in run_pipeline
+    return runner.run_pipeline(pipeline, options)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 176, in run_pipeline
+    pipeline.to_runner_api(default_environment=self._default_environment))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 186, in run_via_runner_api
+    return self.run_stages(stage_context, stages)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 346, in run_stages
+    bundle_context_manager,
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 534, in _run_stage
+    bundle_manager)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 572, in _run_bundle
+    data_input, data_output, input_timers, expected_timer_output)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 852, in process_bundle
+    result_future = self._worker_handler.control_conn.push(process_bundle_req)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/worker_handlers.py", line 353, in push
+    response = self.worker.do_instruction(request)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/worker/sdk_worker.py", line 484, in do_instruction
+    getattr(request, request_type), request.instruction_id)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/worker/sdk_worker.py", line 519, in process_bundle
+    bundle_processor.process_bundle(instruction_id))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/worker/bundle_processor.py", line 985, in process_bundle
+    element.data)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/worker/bundle_processor.py", line 221, in process_encoded
+    self.output(decoded_value)
+  File "apache_beam/runners/worker/operations.py", line 354, in apache_beam.runners.worker.operations.Operation.output
+  File "apache_beam/runners/worker/operations.py", line 356, in apache_beam.runners.worker.operations.Operation.output
+  File "apache_beam/runners/worker/operations.py", line 218, in apache_beam.runners.worker.operations.SingletonConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1279, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 569, in apache_beam.runners.common.SimpleInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 1374, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "apache_beam/runners/worker/operations.py", line 218, in apache_beam.runners.worker.operations.SingletonConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1279, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 569, in apache_beam.runners.common.SimpleInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 1374, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "apache_beam/runners/worker/operations.py", line 218, in apache_beam.runners.worker.operations.SingletonConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1294, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/future/utils/__init__.py", line 446, in raise_with_traceback
+    raise exc.with_traceback(traceback)
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 742, in apache_beam.runners.common.PerWindowInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 867, in apache_beam.runners.common.PerWindowInvoker._invoke_process_per_window
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/transforms/core.py", line 1616, in <lambda>
+    wrapper = lambda x, *args, **kwargs: [fn(x, *args, **kwargs)]
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 628, in _create_v2_saved_model
+    output_keys_to_name_map)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/impl_helper.py", line 515, in trace_and_write_v2_saved_model
+    tf.saved_model.save(module, saved_model_dir)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 976, in save
+    obj, export_dir, signatures, options, meta_graph_def)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 1066, in _build_meta_graph
+    options.namespace_whitelist)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 653, in _fill_meta_graph_def
+    signatures = _generate_signatures(signature_functions, resource_map)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 519, in _generate_signatures
+    function, mapped_inputs, resource_map)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 471, in _call_function_with_mapped_captures
+    resource_map)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow/python/saved_model/save.py", line 394, in _map_captures_to_created_tensors
+    ).format(interior))
+AssertionError: Tried to export a function which references untracked object Tensor("112358:0", shape=(), dtype=resource).TensorFlow objects (e.g. tf.Variable) captured by functions must be tracked by assigning them to an attribute of a tracked object or assigned to an attribute of the main object directly. [while running 'Extract embeddings/AnalyzeDataset/CreateSavedModel/CreateSavedModel']
