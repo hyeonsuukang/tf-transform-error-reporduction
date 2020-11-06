@@ -1,0 +1,286 @@
+2020-11-05 19:38:17.535231: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2020-11-05 19:38:17.545717: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f89444732f0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-11-05 19:38:17.545743: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Traceback (most recent call last):
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 742, in apache_beam.runners.common.PerWindowInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 860, in apache_beam.runners.common.PerWindowInvoker._invoke_process_per_window
+  File "apache_beam/runners/common.py", line 1347, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 434, in process
+    lambda: self._make_graph_state(saved_model_dir))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tfx_bsl/beam/shared.py", line 238, in acquire
+    return _shared_map.acquire(self._key, constructor_fn, tag)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tfx_bsl/beam/shared.py", line 194, in acquire
+    result = control_block.acquire(constructor_fn, tag)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tfx_bsl/beam/shared.py", line 89, in acquire
+    result = constructor_fn()
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 434, in <lambda>
+    lambda: self._make_graph_state(saved_model_dir))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 398, in _make_graph_state
+    self._exclude_outputs, self._tf_config)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 239, in __init__
+    tensor_inputs = graph_tools.get_dependent_inputs(graph, inputs, fetches)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 787, in get_dependent_inputs
+    sink_tensors_ready)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 576, in __init__
+    table_init_op, graph_analyzer_for_table_init, translate_path_fn)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 683, in _get_table_init_op_source_info
+    raise e
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 670, in _get_table_init_op_source_info
+    ready = all(map(graph_analyzer.ready_to_run, table_init_inputs))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 478, in ready_to_run
+    for component in _decompose_tensor_or_op(tensor_or_op))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 478, in <genexpr>
+    for component in _decompose_tensor_or_op(tensor_or_op))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 436, in analyze_tensor
+    tf_utils.deref_tensor_or_op(current), parent_results)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 369, in _compute_analysis_result
+    tensor_or_op, parent_analysis_results))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 330, in _compute_analysis_results_for_func_attributes
+    func_graph_analyzer.analyze_tensor(t) for t in func_graph.outputs
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 330, in <listcomp>
+    func_graph_analyzer.analyze_tensor(t) for t in func_graph.outputs
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 436, in analyze_tensor
+    tf_utils.deref_tensor_or_op(current), parent_results)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 369, in _compute_analysis_result
+    tensor_or_op, parent_analysis_results))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 330, in _compute_analysis_results_for_func_attributes
+    func_graph_analyzer.analyze_tensor(t) for t in func_graph.outputs
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 330, in <listcomp>
+    func_graph_analyzer.analyze_tensor(t) for t in func_graph.outputs
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 427, in analyze_tensor
+    parents = self._get_parents(tf_utils.deref_tensor_or_op(current))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 250, in _get_parents
+    raise _UnexpectedTableError(tensor_or_op, func_graph_name)
+tensorflow_transform.graph_tools._UnexpectedTableError: An unexpected initializable table was encountered (name: "hash_table"
+op: "HashTableV2"
+attr {
+  key: "container"
+  value {
+    s: ""
+  }
+}
+attr {
+  key: "key_dtype"
+  value {
+    type: DT_STRING
+  }
+}
+attr {
+  key: "shared_name"
+  value {
+    s: "hash_table_/tmp/tmp1fa1fysc/38d2822a4c0f9e7fab4a1a72942ed2a45d9b3976/vocab.txt_-2_-1_load_5_357"
+  }
+}
+attr {
+  key: "use_node_name_sharing"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "value_dtype"
+  value {
+    type: DT_INT64
+  }
+}
+experimental_debug_info {
+  original_node_names: "hash_table"
+}
+)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "run_pipeline.py", line 45, in <module>
+    main()
+  File "run_pipeline.py", line 40, in main
+    pipeline.run(pipeline_options, known_args)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/modules/pipeline.py", line 112, in run
+    job = pipeline.run()
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/pipeline.py", line 547, in run
+    return self.runner.run_pipeline(self, self._options)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/direct/direct_runner.py", line 119, in run_pipeline
+    return runner.run_pipeline(pipeline, options)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 176, in run_pipeline
+    pipeline.to_runner_api(default_environment=self._default_environment))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 186, in run_via_runner_api
+    return self.run_stages(stage_context, stages)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 346, in run_stages
+    bundle_context_manager,
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 534, in _run_stage
+    bundle_manager)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 572, in _run_bundle
+    data_input, data_output, input_timers, expected_timer_output)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/fn_runner.py", line 852, in process_bundle
+    result_future = self._worker_handler.control_conn.push(process_bundle_req)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/portability/fn_api_runner/worker_handlers.py", line 353, in push
+    response = self.worker.do_instruction(request)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/worker/sdk_worker.py", line 484, in do_instruction
+    getattr(request, request_type), request.instruction_id)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/worker/sdk_worker.py", line 519, in process_bundle
+    bundle_processor.process_bundle(instruction_id))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/worker/bundle_processor.py", line 985, in process_bundle
+    element.data)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/apache_beam/runners/worker/bundle_processor.py", line 221, in process_encoded
+    self.output(decoded_value)
+  File "apache_beam/runners/worker/operations.py", line 354, in apache_beam.runners.worker.operations.Operation.output
+  File "apache_beam/runners/worker/operations.py", line 356, in apache_beam.runners.worker.operations.Operation.output
+  File "apache_beam/runners/worker/operations.py", line 218, in apache_beam.runners.worker.operations.SingletonConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1279, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 569, in apache_beam.runners.common.SimpleInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 1374, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "apache_beam/runners/worker/operations.py", line 218, in apache_beam.runners.worker.operations.SingletonConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1279, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 569, in apache_beam.runners.common.SimpleInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 1374, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "apache_beam/runners/worker/operations.py", line 218, in apache_beam.runners.worker.operations.SingletonConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1279, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 569, in apache_beam.runners.common.SimpleInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 1374, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "apache_beam/runners/worker/operations.py", line 155, in apache_beam.runners.worker.operations.ConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1279, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 569, in apache_beam.runners.common.SimpleInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 1374, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "apache_beam/runners/worker/operations.py", line 218, in apache_beam.runners.worker.operations.SingletonConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1279, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 569, in apache_beam.runners.common.SimpleInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 1374, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "apache_beam/runners/worker/operations.py", line 218, in apache_beam.runners.worker.operations.SingletonConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1279, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 569, in apache_beam.runners.common.SimpleInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 1374, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "apache_beam/runners/worker/operations.py", line 218, in apache_beam.runners.worker.operations.SingletonConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1279, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 569, in apache_beam.runners.common.SimpleInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 1374, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "apache_beam/runners/worker/operations.py", line 218, in apache_beam.runners.worker.operations.SingletonConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1279, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 569, in apache_beam.runners.common.SimpleInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 1374, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "apache_beam/runners/worker/operations.py", line 218, in apache_beam.runners.worker.operations.SingletonConsumerSet.receive
+  File "apache_beam/runners/worker/operations.py", line 703, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/worker/operations.py", line 704, in apache_beam.runners.worker.operations.DoOperation.process
+  File "apache_beam/runners/common.py", line 1215, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 1294, in apache_beam.runners.common.DoFnRunner._reraise_augmented
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/future/utils/__init__.py", line 446, in raise_with_traceback
+    raise exc.with_traceback(traceback)
+  File "apache_beam/runners/common.py", line 1213, in apache_beam.runners.common.DoFnRunner.process
+  File "apache_beam/runners/common.py", line 742, in apache_beam.runners.common.PerWindowInvoker.invoke_process
+  File "apache_beam/runners/common.py", line 860, in apache_beam.runners.common.PerWindowInvoker._invoke_process_per_window
+  File "apache_beam/runners/common.py", line 1347, in apache_beam.runners.common._OutputProcessor.process_outputs
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 434, in process
+    lambda: self._make_graph_state(saved_model_dir))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tfx_bsl/beam/shared.py", line 238, in acquire
+    return _shared_map.acquire(self._key, constructor_fn, tag)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tfx_bsl/beam/shared.py", line 194, in acquire
+    result = control_block.acquire(constructor_fn, tag)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tfx_bsl/beam/shared.py", line 89, in acquire
+    result = constructor_fn()
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 434, in <lambda>
+    lambda: self._make_graph_state(saved_model_dir))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 398, in _make_graph_state
+    self._exclude_outputs, self._tf_config)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/beam/impl.py", line 239, in __init__
+    tensor_inputs = graph_tools.get_dependent_inputs(graph, inputs, fetches)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 787, in get_dependent_inputs
+    sink_tensors_ready)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 576, in __init__
+    table_init_op, graph_analyzer_for_table_init, translate_path_fn)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 683, in _get_table_init_op_source_info
+    raise e
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 670, in _get_table_init_op_source_info
+    ready = all(map(graph_analyzer.ready_to_run, table_init_inputs))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 478, in ready_to_run
+    for component in _decompose_tensor_or_op(tensor_or_op))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 478, in <genexpr>
+    for component in _decompose_tensor_or_op(tensor_or_op))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 436, in analyze_tensor
+    tf_utils.deref_tensor_or_op(current), parent_results)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 369, in _compute_analysis_result
+    tensor_or_op, parent_analysis_results))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 330, in _compute_analysis_results_for_func_attributes
+    func_graph_analyzer.analyze_tensor(t) for t in func_graph.outputs
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 330, in <listcomp>
+    func_graph_analyzer.analyze_tensor(t) for t in func_graph.outputs
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 436, in analyze_tensor
+    tf_utils.deref_tensor_or_op(current), parent_results)
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 369, in _compute_analysis_result
+    tensor_or_op, parent_analysis_results))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 330, in _compute_analysis_results_for_func_attributes
+    func_graph_analyzer.analyze_tensor(t) for t in func_graph.outputs
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 330, in <listcomp>
+    func_graph_analyzer.analyze_tensor(t) for t in func_graph.outputs
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 427, in analyze_tensor
+    parents = self._get_parents(tf_utils.deref_tensor_or_op(current))
+  File "/Users/hyeonsuk/Desktop/Projects/deep_search_backend/tf_hub_transform_minimal/env3.7/lib/python3.7/site-packages/tensorflow_transform/graph_tools.py", line 250, in _get_parents
+    raise _UnexpectedTableError(tensor_or_op, func_graph_name)
+RuntimeError: tensorflow_transform.graph_tools._UnexpectedTableError: An unexpected initializable table was encountered (name: "hash_table"
+op: "HashTableV2"
+attr {
+  key: "container"
+  value {
+    s: ""
+  }
+}
+attr {
+  key: "key_dtype"
+  value {
+    type: DT_STRING
+  }
+}
+attr {
+  key: "shared_name"
+  value {
+    s: "hash_table_/tmp/tmp1fa1fysc/38d2822a4c0f9e7fab4a1a72942ed2a45d9b3976/vocab.txt_-2_-1_load_5_357"
+  }
+}
+attr {
+  key: "use_node_name_sharing"
+  value {
+    b: true
+  }
+}
+attr {
+  key: "value_dtype"
+  value {
+    type: DT_INT64
+  }
+}
+experimental_debug_info {
+  original_node_names: "hash_table"
+}
+) [while running 'Extract embeddings/TransformDataset/Transform']

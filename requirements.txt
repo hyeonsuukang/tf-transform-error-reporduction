@@ -1,0 +1,8 @@
+numpy==1.18.5
+absl-py==0.10.0
+apache-beam[gcp]
+tensorflow>=2.0.0
+tensorflow-hub
+tfx-bsl
+tensorflow-transform==0.25.0
+tensorflow-text
