@@ -14,12 +14,12 @@ force_tf_compat_v1 = False
 
 # Does not work with or without force_tf_compat_v1 = False
 # See the error logs in universal-sentence-encoder-large.logs
-MODEL_URL = "https://tfhub.dev/google/universal-sentence-encoder-large/5"
+# MODEL_URL = "https://tfhub.dev/google/universal-sentence-encoder-large/5"
 
 # Bert model does not work
 # See the error logs in bert-pubmed.logs
-# MODEL_URL = "https://tfhub.dev/google/experts/bert/pubmed/2"
-# PREPROCESS_URL = "https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/1"
+MODEL_URL = "https://tfhub.dev/google/experts/bert/pubmed/2"
+PREPROCESS_URL = "https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/1"
 
 
 def embed_text(text):
@@ -80,7 +80,7 @@ def run(pipeline_options, known_args):
 
     if "universal-sentence-encoder" in MODEL_URL and int(MODEL_URL.split("/")[-1]) <= 2:
         # https://github.com/tensorflow/transform/issues/160
-        force_tf_compat_v1 = False
+        force_tf_compat_v1 = True
 
     with tft_beam.Context(temp_dir=tempfile.mkdtemp(), force_tf_compat_v1=force_tf_compat_v1):
         print("Context force_tf_compat_v1: {}".format(tft_beam.Context.get_use_tf_compat_v1()))
