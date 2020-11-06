@@ -7,19 +7,20 @@ from apache_beam.options.pipeline_options import PipelineOptions
 import tempfile
 
 model, preprocess = None, None
-force_tf_compat_v1 = True
+force_tf_compat_v1 = False
 
 # Works with force_tf_compat_v1 = True (default)
-#MODEL_URL = "https://tfhub.dev/google/universal-sentence-encoder/2"
+# MODEL_URL = "https://tfhub.dev/google/universal-sentence-encoder/2"
 
 # Does not work with or without force_tf_compat_v1 = False
 # See the error logs in universal-sentence-encoder-large.logs
-# MODEL_URL = "https://tfhub.dev/google/universal-sentence-encoder-large/5"
+MODEL_URL = "https://tfhub.dev/google/universal-sentence-encoder-large/5"
 
 # Bert model does not work
 # See the error logs in bert-pubmed.logs
-MODEL_URL = "https://tfhub.dev/google/experts/bert/pubmed/2"
-PREPROCESS_URL = "https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/1"
+# MODEL_URL = "https://tfhub.dev/google/experts/bert/pubmed/2"
+# PREPROCESS_URL = "https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/1"
+
 
 def embed_text(text):
     import tensorflow_hub as hub
@@ -30,8 +31,7 @@ def embed_text(text):
             preprocess = hub.load(PREPROCESS_URL)
             model = hub.load(MODEL_URL)
             bert_outputs = model(preprocess(text))
-            embedding = bert_outputs["pooled_output"]
-            force_tf_compat_v1 = False # https://github.com/tensorflow/transform/issues/160
+            return bert_outputs["pooled_output"]
         elif "universal-sentence-encoder" in MODEL_URL:
             # Universal Sentence Encoders
             if int(MODEL_URL.split("/")[-1]) <= 2:
@@ -40,10 +40,8 @@ def embed_text(text):
             else:
                 # TF2
                 model = hub.load(MODEL_URL)
-                force_tf_compat_v1 = False # https://github.com/tensorflow/transform/issues/160
-            embedding = model(text)
-    return embedding
-
+            return model(text)
+    return None
 
 def get_metadata():
     from tensorflow_transform.tf_metadata import dataset_schema
@@ -78,7 +76,12 @@ def run(pipeline_options, known_args):
     pipeline_options = PipelineOptions(argv)
     pipeline = beam.Pipeline(options=pipeline_options)
 
+    if "universal-sentence-encoder" in MODEL_URL and int(MODEL_URL.split("/")[-1]) <= 2:
+        # https://github.com/tensorflow/transform/issues/160
+        force_tf_compat_v1 = False
+
     with tft_beam.Context(temp_dir=tempfile.mkdtemp(), force_tf_compat_v1=force_tf_compat_v1):
+        print("Context force_tf_compat_v1: {}".format(tft_beam.Context.get_use_tf_compat_v1()))
         articles = (
             pipeline
             | beam.Create([
