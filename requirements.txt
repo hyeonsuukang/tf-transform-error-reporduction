@@ -6,3 +6,4 @@ tensorflow-hub
 tfx-bsl
 tensorflow-transform==0.25.0
 tensorflow-text
+#allennlp==0.9.0
